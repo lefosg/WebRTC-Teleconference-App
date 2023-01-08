@@ -248,9 +248,8 @@ async function sendAuthenticatorAttestationResponse(newCredential) {
         setUser()
     }
 
-    if (status.status) {
-        $('#login-button').attr("disabled", false);
-    }
+    $('#login-button').attr("disabled", false);
+    
 }
 
 

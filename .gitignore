@@ -1,2 +1,6 @@
 
 .env
+*.key
+security/cert.pem
+security/localhost.cer
+security/req.cnf

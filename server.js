@@ -1,20 +1,30 @@
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const express = require('express');
+const fs = require('fs');
+const rimraf = require("rimraf");
 const app = express();
-const cors = require('cors'); //fixme: fix cors
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
-const { exec } = require('child_process')
+const cors = require('cors'); //fixme: fix cors, note: somehow it fixed itself
+//.env
+require('dotenv').config();
+const PORT = process.env.PORT;
+//https server
+const https = require('https');
+
+let privateKey = fs.readFileSync('./security/cert.key');
+let certificate = fs.readFileSync('./security/cert.pem');
+let credentials = {key: privateKey, cert: certificate};
+httpsServer = https.createServer(credentials, app);
+
+const io = require('socket.io')(httpsServer);
 const MongoStore = require('connect-mongo'); //db
+const { exec } = require('child_process');
 require('./database/db');
 const { randomBase64URLBuffer } = require('./helper'); //for the secrete used in sessions
 const User = require('./database/schemas/User'); //the description of the user object saved in database
-const fs = require('fs');
 const dl = require('delivery');
-const rimraf = require("rimraf");
-require('dotenv').config();
 
+httpsServer.listen(PORT, () => console.log("Running HTTP express server at https://localhost:"+PORT));
 //run peerjs server for finding peers and assigning ids
 exec("peerjs --port 3001", (error, stdout, stderr) => {
     if (error) {
@@ -41,7 +51,6 @@ app.use(expressSession({
 app.use(cookieParser())
 
 //make api completely public//
-const PORT = process.env.PORT;
 
 app.set('view engine', 'ejs')
 app.use(express.static("public"));
@@ -239,4 +248,3 @@ io.on('error', err => {
     console.log(err);
 });
 
-server.listen(PORT, () => { console.log("Running express server on http://localhost:" + PORT); });

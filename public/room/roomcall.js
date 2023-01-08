@@ -1,13 +1,14 @@
-const socket = io('http://localhost:8000');
+let current_location = window.location.href;
+let x = window.location.href.slice(0, window.location.href.lastIndexOf('/'));
+let effective_domain = x.slice(0, x.lastIndexOf('/'));
+
+const socket = io(effective_domain);
 const peerGrid = document.getElementById('video-grid');
 const flexContainer = document.getElementById('flexbox-container-Id');
 const messageBox = document.getElementById('messagesArea')
 const participantsBox = document.getElementById('participantsList')
 const myFeed = document.getElementById('myVideo');
-const myPeer = new Peer(undefined, {
-  host: '/',
-  port: '3001'
-});
+const myPeer = new Peer();
 let myPeerId = null;
 var peerCounter = 0;
 
@@ -152,16 +153,16 @@ navigator.mediaDevices.getUserMedia({
 		let leaveCall = confirm("Do you want to leave the current call?");
 		if (!leaveCall) return;
 		leaveCallAudio();
-		localStorage.setItem("inCall", false);
+		//localStorage.setItem("inCall", false);
 		socket.disconnect();
 		socket.close();
 		myPeer.disconnect();
 		myPeer.destroy();
-		window.location.replace("http://localhost:8000/")
+		window.location.replace(effective_domain)
 		socket.emit('disconnect');
 	}
 
-	localStorage.setItem("inCall", true);
+	//localStorage.setItem("inCall", true);
 
 
 	document.getElementById('camera-btn').addEventListener('click',toggleCamera);
@@ -504,8 +505,8 @@ delivery.on('send.success',function(fileUID){
 	console.log("file was successfully sent.");
 });
 
-window.onbeforeunload = function(event) { 
-	localStorage.setItem("inCall", false);
-	event.preventDefault();
-  	event.returnValue = '';
-}
+// window.onbeforeunload = function(event) { 
+// 	localStorage.setItem("inCall", false);
+// 	event.preventDefault();
+//   	event.returnValue = '';
+// }

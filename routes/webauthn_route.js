@@ -11,8 +11,8 @@ const File = require('file-api').File;
 
 
 //RP data/local variables, could have a database containing them
-const RPorigin = "http://localhost:8000";
-const rpEffectiveDomain = "localhost";
+const RPorigin = "https://multimedia.com:8000";
+const rpEffectiveDomain = "multimedia.com";
 const operationTypes = {
     'create' : 'webauthn.create',
     'get' : 'webauthn.get'
