@@ -24,7 +24,7 @@ const { randomBase64URLBuffer } = require('./helper'); //for the secrete used in
 const User = require('./database/schemas/User'); //the description of the user object saved in database
 const dl = require('delivery');
 
-httpsServer.listen(PORT, () => console.log("Running HTTP express server at https://localhost:"+PORT));
+httpsServer.listen(PORT, () => console.log("Running HTTPS express server at https://" + process.env.DOMAIN_NAME +":"+PORT));
 //run peerjs server for finding peers and assigning ids
 exec("peerjs --port 3001", (error, stdout, stderr) => {
     if (error) {

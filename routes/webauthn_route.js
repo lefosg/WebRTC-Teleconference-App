@@ -8,11 +8,13 @@ const { createHash } = require('crypto')
 const ProfilePic = require('../database/schemas/ProfilePic');
 const FileReader = require('file-api').FileReader;
 const File = require('file-api').File;
+require('dotenv').config();
+
 
 
 //RP data/local variables, could have a database containing them
-const RPorigin = "https://multimedia.com:8000";
-const rpEffectiveDomain = "multimedia.com";
+const RPorigin = "https://"+process.env.DOMAIN_NAME+":8000";
+const rpEffectiveDomain = process.env.DOMAIN_NAME;
 const operationTypes = {
     'create' : 'webauthn.create',
     'get' : 'webauthn.get'
