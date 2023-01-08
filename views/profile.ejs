@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+
+    <script>
+        const username = "<%= uname %>";
+        const profPic = "<%= image %>";
+    </script>
+    <link rel="stylesheet" href="profile.css">
+    <script type="text/javascript" src="profile.js" defer></script>
+
+</head>
+
+<body>
+
+    <div id='header'>
+        <ul>
+            <li><a id="goToStartMenu">A-WebRTC</a></li>
+        </ul>
+    </div>
+
+    <br> <br>
+    <div class="center rcorners">
+
+        <input type="text" id="usernameField" style="font-size: larger;"> <br> <br>
+
+        <label id="changeUsernameBtn" for="changeUsernameBtn">Edit username</label>
+        <label id="cancelChangeUsernameBtn" for="cancelChangeUsernameBtn" style="display: none;">Cancel</label>
+
+        <button type="button" style="display: none;">Edit username</button>
+        <button type="button" style="display: none;">Cancel</button>
+        <br> <br>
+
+        <img class="img" src="<%= image %>"> <br> <br>
+
+        <label for="uploadProfilePic">Choose image to upload</label>
+        <input type="file" id="uploadProfilePic" accept="image/*" style="display: none;" />
+    </div>
+
+</body>
+
+</html>

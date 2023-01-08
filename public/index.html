@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' media ='screen' href='room/login_style.css'>
+    <link rel="icon" type="image/x-icon" href="room/call.png">
+    <script src="/socket.io/socket.io.js" defer></script>
+    
+    <!-- WebAuthn js dependencies -->
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="webauthn.auth.js" defer></script>
+    <script type="text/javascript" src="cbor.js"></script>
+    <script type="text/javascript" src="base64.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    
+    <title>Welcome</title>
+</head>
+<body>
+
+    <div id='header'>
+        <ul>
+          <li><a>A-WebRTC</a></li>
+            <li style="display: none; float:right; padding-right: 1%" id="userBox">
+                <a> <img src="./room/icons/user.png" alt="logo" class="logo-image"> </a> </li>
+          <li style="display: none; float:right; padding-right: 1%;" id="logout-button">
+            <a> <img src="./logout.png" alt="logo" class="logo-image"> </a></li>
+        </ul>
+    </div>
+
+    <br>
+    <img class="logo" src="/room/call.png" alt="Logo">
+    <div class="actions-box">
+
+        <div class="slogan">
+            <span style="color: #ff6700">LOGIN</span> & <br>START
+            <span style="color: #ff6700">TALKIN</span> <br> <span id="guestText">AS A GUEST</span>
+        </div>
+        <input class='inputFields'type="text" name="roomID" id="roomIDField" placeholder="Room ID"/><br>
+        <input class='inputFields'type="text" name="userId" id="userIDField" placeholder="Username"/><br>
+        <button class="enterRoomButton" id="enterRoomButton" onclick="enterRoom()">Enter</button> <br><br><br>
+        <div class="slogan" id="authenticationFormSlogan">
+            OR <span style="color: #ff6700">BE COOL</span> AND <span style="color: #ff6700">AUTHENTICATE</span><br> 
+            WITH <span style="color: #ff6700">WEBAUTHN</span>
+        </div>
+        <input class='inputFields'type="text" name="authUsername" id="authUsername" placeholder="Username"/><br>
+        <button class="enterRoomButton" id="register-button">Register</button> <br>
+        <button class="enterRoomButton" id="login-button">Login</button> 
+        
+
+    </div>
+
+    <script>
+        function enterRoom() {
+            if (localStorage.getItem("inCall") === 'true') {
+                alert("Already in call!");
+                return;
+            }
+            let roomID = document.getElementById('roomIDField').value;
+            let name = document.getElementById('userIDField').value;
+            if (roomID.trim() == "" || name.trim() == "") {
+                alert("Please enter room name and username");
+                return;
+            }
+            document.getElementById('roomIDField').value = "";
+            document.getElementById('userIDField').value = "";            
+            //document.cookie = "username="+name;
+            window.location.href = window.location.href + "room/" + roomID + "?username=" + name;
+        }
+
+        document.getElementById("userIDField").addEventListener("keypress", event => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("enterRoomButton").click();
+            }
+        });
+
+        document.getElementById("roomIDField").addEventListener("keypress", event => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("enterRoomButton").click();
+            }
+        });
+
+        document.getElementById("userBox").addEventListener('click', goToProfile);
+
+        function goToProfile() {
+            let name = document.getElementById('userIDField').value;
+            if (name == "") {
+                alert("Username field missing, sth went wrong :(");
+                return;
+            }
+            window.location.href = window.location.href + "profile/" + name;
+        }
+    </script>
+</body>
+</html>

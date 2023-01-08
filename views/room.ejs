@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/x-icon" href="/room/call.png">
+  <link rel='stylesheet' type='text/css' media ='screen' href="style.css">
+
+  <script>
+    const ROOM_ID = "<%= roomId %>"
+    const username = "<%= uname %>"
+    document.title = "Call " + ROOM_ID
+  </script>
+  
+  <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="delivery.js"></script>  <!-- package for transmitting files -->
+  <script src="FileSaver.js"></script>
+  <script src="roomcall.js" defer></script>
+
+  <title>Call</title>
+</head>
+
+<body>
+  <!-- HEADER BOX -->
+  <div class="header-box">
+    <div class="title-box" id="titleBox">ROOM_ID</div>
+      <div class="outer">  
+        <div class="username-box" class="float-child" id="usernameBox">USERNAME</div>
+        <input type="image" id="participantsBtn" class="float-child" src="icons/participants.png">
+        <input type="image" id="chatBtn" class="float-child" src="icons/chat.png">
+      </div>
+  </div>
+
+
+  <!-- PEERS VIDEO -->
+  <div class="flexbox-container " id="flexbox-container-Id">
+  </div>
+
+  <!-- LOCAL VIDEO -->
+  <div class="my-feed-box">
+    <video class='video-player' id="myVideo" autoplay playsinline></video>
+    <div id="myVideoUsername" class="name-box">Username</div>
+  </div>
+
+  <!-- CHAT -->
+  <div class="chat-popup" id="chatBox">
+    <form class="form-container" id="form-msg">
+
+      <pre id="messagesArea" class="messages-area"></pre>
+
+      <input id="msgInputArea" class="msgInputArea" type="text" placeholder="Type message.." name="msg"></input> 
+
+      <button type="button" id="sendMsgBtn" class="btn send"> <img src="icons/send.png"/></button>
+
+      <label for="sendAttachmentBtn" class="btn sendFile"><img src="icons/attachment.png"/>Attach a file</label>
+      <input type="file" id="sendAttachmentBtn" style="display: none;"/>
+
+    </form>
+  </div>
+
+  <!-- PARTICIPANTS LIST -->
+
+  <div class="chat-popup" id="participantsBox">
+    <form class="form-container" id="form-prt">
+    
+      <pre id="participantsList" class="messages-area"> 
+      </pre>
+    
+    </form>
+  </div>
+
+  <!-- CONTROLS -->
+  <div id="controls">
+
+    <div class="control-container" id="camera-btn">
+        <img src="icons/camera2.png" />
+    </div>
+
+    <div class="control-container" id="mic-btn">
+        <img src="icons/mic2.png" />
+    </div>
+
+    <div class="control-container" id="screen-share-btn">
+      <img src="icons/screen_share.png" />
+    </div>
+
+    <div class="control-container" id="hang-up-btn">
+        <img src="icons/hangup2.png" />
+    </div>
+
+</div>
+</body>
+</html>

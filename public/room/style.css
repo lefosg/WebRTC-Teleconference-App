@@ -1,0 +1,379 @@
+body{
+  background: linear-gradient(to bottom right, #111111, #101010, #202020, #303030);
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
+
+.header-box
+{
+  height: 50px;
+  position: relative;
+  background-color: #ff6700;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;    
+  
+}
+.title-box{
+  position: absolute;
+  font-size: 5vh;
+  left:1%;
+  bottom:20%;
+}
+
+.outer > * {
+  vertical-align:middle;
+  right: 3%;
+  float: right;
+}
+
+.username-box{
+  width: 10%;
+  font-size: 3vh;
+  border: 3px;
+  padding: 5px;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+#vid{
+  position: relative; 
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
+.video-player
+{    
+  background-color: black;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  object-fit: cover;
+  width: 100%;
+  z-index: 5;
+}
+
+.my-feed-box{
+  align-items:center;
+  background-color: #111111;
+  width: 20%;
+  height: 31.6%;
+  position: fixed;
+  top:50px; 
+  right:0;
+  border: 3px #111111 solid
+}
+
+.name-box
+{
+  width: 100%;
+  height: 15px;
+  background-color: #101010;
+  color: #f1f1f1;
+  font-family:  Arial, sans-serif; 
+  opacity: 0.5;
+  font-size: small;
+  position: absolute;
+  bottom: 0px;
+  z-index: 10;
+}
+
+#peerVideoUsername{
+  position: relative;
+  bottom:4%;
+  height:20px;
+  font-size: 3vh;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+#controls
+{
+  height: 14%;
+  width: 40%;
+  background-color: #505050;
+  border-radius: 2%;
+  position: fixed;
+  bottom: -15px;
+  left:50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1em;
+  border:1px solid;
+  border-radius: 50% 50%  0 0 /250px; 
+  opacity:0.5;
+}
+#controls:hover{
+  opacity: 1;
+  bottom: 10px; 
+  border-radius: 50%/250px; 
+}
+
+.control-container
+{
+  width:40%;
+  height: 40%;
+  margin:3%;
+  padding:15px;
+  border-radius:45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  object-fit: scale-down;
+}
+
+.control-container img
+{ 
+  height: 50px;
+  width: 50px;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+
+/**====================
+  CHAT BOX
+======================*/
+
+.participants-list-box{
+  width: 10px;
+  height: 10%;
+  border: 0;
+  cursor: pointer;
+  right:3%;
+  top: 30%;
+}
+
+.float-child {
+  width: 50px;
+  height: 50px;
+  float: right;
+  border: 5px;
+  
+}  
+
+.chat-box{
+  position: absolute;
+  right:0;
+  top: 30%;
+}
+
+.open-button {
+  background-color: #505050;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: none;
+  position: fixed;
+  width :20.45%;
+  height:60%;
+  bottom: 0;
+  right: 0;
+  z-index: 9;
+  background-color: #101010;
+}
+
+/* Add styles to the form container */
+.form-container {
+  height: 100%;
+  padding: 10px;
+  background-color: #101010;
+}
+#form-msg{
+  height:95%;
+}
+
+.messages-area /*message log*/
+{
+  height:70%;
+  width: 92%;
+  padding: 10px;
+  background-color: #303030;
+  color: #909090;
+  font-family:  Arial, sans-serif;
+  overflow-y: scroll;
+  margin:0;
+}
+
+.form-container input {
+  width: 73%;
+  height: 20px;
+  padding: 10px;
+  margin: 3% 0 12px 0;
+  border: none;
+  background-color: #303030;
+  color: white;
+  resize: none;
+}
+
+#participantsList{
+  height:90%
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #505050;
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: #ff6700;
+  color: white;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  bottom: 0;
+  opacity: 0.8;
+  padding: 10px;
+  font-family:  Arial, sans-serif; 
+}
+
+.form-container .send {
+  width: 17%;
+  margin: 3% 0px 32px 0;
+  float: right;
+}
+
+.form-container .sendFile {
+  width: 85%;
+  height :3%;
+  position: absolute;
+  bottom:2%;
+  left: 4%;
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#303030;
+}
+
+.form-container .send img {
+  width: 20px;
+  height: 20px;
+}
+
+.form-container .sendFile img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+/** =============
+CHAT MESSAGES STYLES
+============= */
+/* Chat containers */
+.msg-container {
+  border: 2px solid #999999;
+  background-color: #505050;
+  border-radius: 30px 30px 30px 0;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #999999;
+  background-color: #ff6700;
+  color: #202020;
+  border-radius: 30px 30px 0 30px;
+}
+
+/* Clear floats */
+.msg-container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #202020;
+  font-size: 2vh;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999999;
+  font-size: 2vh;
+}
+
+.participant-container /*shows participants in call*/
+{
+  width:90%;
+  height:10%;
+  border: 2px solid #999999;
+  background-color: #505050;
+  border-radius: 0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5% / 10px;
+  position:relative;
+  padding: 8% 3% 8% 3%;
+}
+.participant-container p
+{
+  font-size: 3vh;
+  display: inline-block; 
+  position:absolute;
+  top:1px;
+  left:33%; 
+  font-family: Arial, sans-serif;
+}
+.participant-container img
+{
+  width: 35px;
+  height: 35px;
+  display: inline-block; 
+  position: absolute;
+  align-self: center;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+.flexbox-container {
+  width: 80%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  align-items: stretch;
+  align-content: stretch;
+  flex-wrap: wrap;
+  gap: 1px;
+  background-color: transparent;
+  
+}
+
+.flexbox-item {
+  /*The widsht and the height are currently reflects the width/height of my feed box, 
+  the size gets scaled up/down in the roomcal.js file*/
+  width: 25%;
+  height: 31.6%;
+  margin: 0;
+  border: 2px solid #505050;
+  background-color: #505050;
+  order:2;
+}
